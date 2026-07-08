@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap" rel="stylesheet">
+  <title>First Page Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+
+      background: linear-gradient(135deg, #83e976, #2a5298);
+
+      min-height: 100vh;
+    }
+
+    .mainTitle {
+      text-align: center;
+
+      color: white;
+
+      margin-bottom: 25px;
+
+      font-size: 40px;
+
+      font-weight: bold;
+
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .form {
+      width: 350px;
+
+      background: white;
+
+      padding: 25px;
+
+      border-radius: 20px;
+
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+
+      border: 3px solid #8b0000;
+    }
+
+    .form h2 {
+      text-align: center;
+
+      color: #8b0000;
+
+      margin-bottom: 20px;
+
+      font-size: 28px;
+
+      border-bottom: 2px solid #8b0000;
+
+      padding-bottom: 10px;
+    }
+
+    .form input,
+    .form select {
+      width: 100%;
+
+      padding: 12px;
+
+      margin-bottom: 12px;
+
+      border: 2px solid #dcdcdc;
+
+      border-radius: 10px;
+
+      font-size: 16px;
+
+      transition: 0.3s;
+    }
+
+    .form input:focus,
+    .form select:focus {
+      outline: none;
+
+      border-color: #8b0000;
+
+      box-shadow: 0 0 10px rgba(139, 0, 0, 0.3);
+    }
+
+    .form input,
+    .form button {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+    }
+
+    .form button {
+      width: 100%;
+
+      padding: 14px;
+
+      margin: 8px 0;
+
+      border: none;
+
+      border-radius: 12px;
+
+      font-size: 16px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+
+      transition: 0.3s;
+
+      background: #8b0000;
+
+      color: white;
+    }
+
+    .form button:hover {
+      transform: translateY(-3px);
+
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+    }
+
+    .preview {
+      flex: 1;
+      overflow: auto;
+    }
+
+    #cover {
+      position: relative;
+
+      width: 1000px;
+
+      background: white;
+
+      padding: 15px;
+
+      border-radius: 15px;
+
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    #cover img {
+      width: 100%;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+
+    .text {
+      position: absolute;
+      z-index: 10;
+      font-family: "Spectral", serif;
+      font-weight: 700;
+    }
+
+    .topic {
+      top: 650px;
+      left: 50px;
+      width: 940px;
+      text-align: center;
+      font-size: 85px;
+      font-weight: bold;
+      color: #c20202;
+    }
+
+    .red {
+      color: #c20202;
+    }
+
+    #toText {
+      left: 222px;
+      top: 1076px;
+      font-size: 33px;
+      width: 300px;  
+      transform: translateX(-50%);
+    }
+
+    #byText {
+      left: 633px;
+      top: 1076px;
+      font-size: 33px;
+      width: 300px;
+    }
+
+    #subjectText {
+      left: 220px;
+      top: 1234px;
+      font-size: 28px;
+    }
+
+    #classText {
+      left: 758px;
+      top: 1233px;
+      font-size: 29px;
+    }
+
+    #rollText {
+      left: 790px;
+      top: 1314px;
+      font-size: 29px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .form {
+        width: 100%;
+        max-width: 400px;
+        box-sizing: border-box;
+      }
+
+      .preview {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      #cover {
+        width: 1000px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="mainTitle">Bishop Hartmann Academy Cover Page Generator</h1>
+  <div class="container">
+    <div class="form">
+      <h2>First Page Generator</h2>
+      <input id="topic" placeholder="Topic" />
+      <select id="submittedTo" onchange="toggleCustomTeacher()">
+        <option value="">Select Teacher</option>
+
+        <option>Mohd. Javed Khan</option>
+        <option>Mr. Praveen Kushwaha</option>
+        <option>Mr. Hanumat Kumar Mishra</option>
+        <option>Mr. David Prakash</option>
+        <option>Mr. Shobhit Jaiswal</option>
+        <option>Mr. Gordon Menezes</option>
+        <option>Mr. Adarsh Kumar Jaiswar</option>
+        <option>Mrs. Manisha Passi</option>
+        <option>Mrs. Preeti Singh</option>
+        <option>Miss Maitreyi</option>
+        <option>Mrs. Arti Kushwaha</option>
+        <option>Sr. Thejus CSN</option>
+
+
+
+        <option value="other">Other</option>
+      </select>
+
+      <input id="customTeacher" placeholder="Enter Teacher Name" style="display:none;">
+      
+      <select id="subject" onchange="toggleCustomSubject()">
+        <option value="">Select Subject</option>
+
+        <option>English Literature</option>
+        <option>English Language</option>
+        <option>Mathematics</option>
+        <option>Biology</option>
+        <option>Physics</option>
+        <option>Chemistry</option>
+        <option>History & Civics</option>
+        <option>Geography</option>
+        <option>Computer</option>
+        <option>Physical Education</option>
+        <option>SUPW</option>
+        <option>General Knowledge</option>
+        <option>Moral Science</option>
+        <option value="other">Other</option>
+      </select>
+      <input id="customSubject" placeholder="Enter Subject" style="display: none" />
+
+      <input id="submittedBy"
+        placeholder="Submitted By"
+        oninput="loadStudent(this.value)" />
+
+      <input id="className" placeholder="Class" />
+      <input id="rollNo" placeholder="Roll No." />
+      <select id="textColor">
+        <option value="#c20202">Red Text</option>
+        <option value="#000000">Black Text</option>
+      </select>
+      <button onclick="generate()">Generate Preview</button>
+      <button onclick="generateAndDownloadPNG()">Generate & Download </button>
+      <button onclick="clearAll()">Clear All</button>
+    </div>
+
+    <div class="preview">
+      <div id="cover">
+        <img src="BHA_Template_300DPI.png" alt="Template" />
+        <div id="topicText" class="text topic"></div>
+        <div id="toText" class="text red"></div>
+        <div id="byText" class="text red"></div>
+        <div id="subjectText" class="text"></div>
+        <div id="classText" class="text"></div>
+        <div id="rollText" class="text"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script type="module" src="script.js"></script>
+
+
+  <script>
+    function saveData() {
+      const data = {
+        topic: document.getElementById("topic").value,
+        submittedTo: document.getElementById("submittedTo").value,
+        customTeacher: document.getElementById("customTeacher").value,
+        
+        subject: document.getElementById("subject").value,
+        customSubject: document.getElementById("customSubject").value,
+        submittedBy: document.getElementById("submittedBy").value,
+        className: document.getElementById("className").value,
+        rollNo: document.getElementById("rollNo").value
+      };
+
+      localStorage.setItem("bhaCoverData", JSON.stringify(data));
+    }
+
+    function loadData() {
+      const saved = localStorage.getItem("bhaCoverData");
+
+      if (!saved) return;
+
+      const data = JSON.parse(saved);
+
+      document.getElementById("topic").value = data.topic || "";
+      document.getElementById("customTeacher").value =
+      data.customTeacher || "";
+      toggleCustomTeacher();
+      
+      document.getElementById("subject").value = data.subject || "";
+      document.getElementById("customSubject").value = data.customSubject || "";
+      document.getElementById("submittedBy").value = data.submittedBy || "";
+      document.getElementById("className").value = data.className || "";
+      document.getElementById("rollNo").value = data.rollNo || "";
+
+      toggleCustomSubject();
+    }
+
+    window.onload = loadData;
+    function toggleCustomSubject() {
+      const subject = document.getElementById("subject").value;
+
+      const custom = document.getElementById("customSubject");
+
+      if (subject === "other") {
+        custom.style.display = "block";
+      } else {
+        custom.style.display = "none";
+      }
+    }
+
+    function toggleCustomTeacher() {
+
+      const teacher = document.getElementById("submittedTo").value;
+
+      const customTeacher = document.getElementById("customTeacher");
+
+      if (teacher === "other") {
+
+        customTeacher.style.display = "block";
+
+      } else {
+
+        customTeacher.style.display = "none";
+
+      }
+
+    }
+
+    function generate() {
+      const topic = document.getElementById("topic").value;
+      const topicText = document.getElementById("topicText");
+
+      topicText.innerText = topic;
+
+      if (topic.length <= 20) {
+        topicText.style.fontSize = "85px";
+      }
+      else if (topic.length <= 35) {
+        topicText.style.fontSize = "70px";
+      }
+      else if (topic.length <= 55) {
+        topicText.style.fontSize = "58px";
+      }
+      else {
+        topicText.style.fontSize = "48px";
+      }
+
+      let teacher = document.getElementById("submittedTo").value;
+
+      if (teacher === "other") {
+
+        teacher = document.getElementById("customTeacher").value;
+
+      }
+
+      document.getElementById("toText").innerText = teacher;
+
+      
+
+      let subjectValue = document.getElementById("subject").value;
+
+      if (subjectValue === "other") {
+        subjectValue = document.getElementById("customSubject").value;
+      }
+
+      document.getElementById("subjectText").innerText = subjectValue;
+
+      document.getElementById("byText").innerText =
+        document.getElementById("submittedBy").value;
+
+      document.getElementById("classText").innerText =
+        document.getElementById("className").value;
+
+      document.getElementById("rollText").innerText =
+        document.getElementById("rollNo").value;
+      const selectedColor =
+        document.getElementById("textColor").value;
+
+      document.getElementById("topicText").style.color =
+        selectedColor;
+
+      document.getElementById("toText").style.color =
+        selectedColor;
+
+      document.getElementById("byText").style.color =
+        selectedColor;
+
+      saveData();
+      saveStudent(
+        document.getElementById("submittedBy").value,
+        document.getElementById("className").value,
+        document.getElementById("rollNo").value
+      );
+
+
+    }
+
+    async function captureCover() {
+      return await html2canvas(document.getElementById("cover"), {
+        scale: 3,
+        useCORS: true,
+      });
+    }
+
+    async function generateAndDownloadPNG() {
+
+      generate();
+
+      setTimeout(async () => {
+
+        const canvas = await captureCover();
+
+        const link = document.createElement("a");
+
+        const topic =
+          document.getElementById("topic").value || "Project";
+
+        const student =
+          document.getElementById("submittedBy").value || "Student";
+
+        const className =
+          document.getElementById("className").value || "Class";
+
+        link.download =
+          `${topic}_${student}_${className}.png`;
+
+        link.href = canvas.toDataURL("image/png");
+
+        link.click();
+
+      }, 300);
+
+    }
+
+
+    function clearAll() {
+
+      document.querySelectorAll("input").forEach(input => input.value = "");
+
+      document.getElementById("subject").selectedIndex = 0;
+
+      toggleCustomSubject();
+      
+      document.getElementById("submittedTo").selectedIndex = 0;
+
+      toggleCustomTeacher();
+      localStorage.removeItem("bhaCoverData");
+
+      document.querySelectorAll(".text").forEach(t => t.innerText = "");
+    }
+
+
+
+
+  </script>
+</body>
+
+</html>
